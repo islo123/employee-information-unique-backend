@@ -11,10 +11,6 @@ const EmployeeSchema = new mongoose.Schema({
     lastDay: {
         type: Date,
         default: Date.now
-    },
-    isEdited: {
-        type: Boolean,
-        default: false
     }
 })
 
