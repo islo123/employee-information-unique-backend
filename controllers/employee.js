@@ -2,9 +2,10 @@ const Employee = require("../models/employee")
 
 
 const getAllEmployees = async function (req, res){
+    const user_id = req.user.userId
     try{
         // Query
-        const employees = await Employee.find({}) 
+        const employees = await Employee.find({user_id}) 
         res.status(200).json({employees})
     }catch(error){
         res.status(500).json({msg: error})
@@ -12,8 +13,10 @@ const getAllEmployees = async function (req, res){
 }
 
 const newEmployee = async  (req, res) => {
+    const {name, team, firstDay, lastDay} = req.body;
     try{
-        const employee = await Employee.create(req.body)
+        const user_id = req.user.userId
+        const employee = await Employee.create({name, team, firstDay, lastDay, user_id})
         res.status(201).json({employee}) // jos status 201 näyttää json 
     }catch(error){
         res.status(500).json({msg: error})

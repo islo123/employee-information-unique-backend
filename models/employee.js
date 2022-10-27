@@ -11,7 +11,12 @@ const EmployeeSchema = new mongoose.Schema({
     lastDay: {
         type: Date,
         default: Date.now
+    },
+    user_id: {
+        type: String,
+        required: true
     }
+
 })
 
 
