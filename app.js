@@ -23,7 +23,7 @@ app.use(
 );
 
 app.use(express.json())
-app.use(cors({credentials: true, origin: 'https://employee-information-unique.netlify.app'})) // Pitä olla security syyistä...frontendin tule error jos ei ole tämä
+app.use(cors({credentials: true, origin: 'https://employee-information-unique.netlify.app', 'methods': 'GET,PUT,PATCH,POST,DELETE'})) // Pitä olla security syyistä...frontendin tule error jos ei ole tämä
 app.use(helmet())
 app.use(xss());
 
