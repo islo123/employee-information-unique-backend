@@ -3,7 +3,7 @@ const { StatusCodes } = require('http-status-codes')
 
 const register = async (req, res) => {
    // Website you wish to allow to connect
-   res.setHeader('Access-Control-Allow-Origin', 'https://employee-information-unique.netlify.app');
+   res.setHeader('Access-Control-Allow-Origin', 'https://employee-information-unique.netlify.app/register');
 
    // Request methods you wish to allow
    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
