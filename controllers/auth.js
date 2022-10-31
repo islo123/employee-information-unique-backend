@@ -2,21 +2,6 @@ const User = require('../models/User')
 const { StatusCodes } = require('http-status-codes')
 
 const register = async (req, res) => {
-   // Website you wish to allow to connect
-   res.setHeader('Access-Control-Allow-Origin', 'https://employee-information-unique.netlify.app');
-
-   // Request methods you wish to allow
-   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-
-   // Request headers you wish to allow
-   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type', 'Authorization', 'X-Requested-With');
-
-   // Set to true if you need the website to include cookies in the requests sent
-   // to the API (e.g. in case you use sessions)
-   res.setHeader('Access-Control-Allow-Credentials', true);
-
-   // Pass to next layer of middleware
-   next();
   const user = await User.create({ ...req.body })
   const token = user.createJWT()
   res.status(StatusCodes.CREATED).json({ user: { name: user.name }, token })
