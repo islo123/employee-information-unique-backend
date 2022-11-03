@@ -12,6 +12,10 @@ const EmployeeSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
+    birth: {
+        type: Date,
+        default: Date.now
+    },
     user_id: {
         type: String,
         required: true

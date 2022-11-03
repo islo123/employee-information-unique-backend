@@ -13,10 +13,10 @@ const getAllEmployees = async function (req, res){
 }
 
 const newEmployee = async  (req, res) => {
-    const {name, team, firstDay, lastDay} = req.body;
+    const {name, team, firstDay, lastDay, birth} = req.body;
     try{
         const user_id = req.user.userId
-        const employee = await Employee.create({name, team, firstDay, lastDay, user_id})
+        const employee = await Employee.create({name, team, firstDay, lastDay, user_id, birth})
         res.status(201).json({employee}) // jos status 201 näyttää json 
     }catch(error){
         res.status(500).json({msg: error})
