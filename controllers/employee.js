@@ -1,11 +1,10 @@
 const Employee = require("../models/employee")
 
-
 const getAllEmployees = async function (req, res){
     const user_id = req.user.userId
     try{
         // Query
-        const employees = await Employee.find({user_id}) 
+        const employees = await Employee.find({user_id}).sort({firstDay: 'desc'})
         res.status(200).json({employees})
     }catch(error){
         res.status(500).json({msg: error})
@@ -36,6 +35,17 @@ const deleteEmployee = async function (req,res){
     }
 }
 
+const deleteAllEmployees = async (req, res) => {
+    try{
+        const user_id = req.user.userId
+        const employees = await Employee.deleteMany({user_id})
+        res.status(200).json({employees})
+    }catch(error){
+        res.status(500).json({msg: error})
+    }
+}
+
+
 const updateEmployee = async function (req,res){
     try{
         const {id: employeeID} = req.params
@@ -52,4 +62,4 @@ const updateEmployee = async function (req,res){
     }
 }
 
-module.exports = {newEmployee, getAllEmployees, updateEmployee, deleteEmployee};
+module.exports = {newEmployee, getAllEmployees, updateEmployee, deleteEmployee, deleteAllEmployees};

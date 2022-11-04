@@ -3,7 +3,7 @@ const connectDB = require("./db/connection")
 const employee = require("./routes/employee")
 const authRouter = require('./routes/auth')
 const authenticateUser = require('./middleware/authentication')
-
+const user = require("./routes/user")
 
 
 const app = express()
@@ -23,13 +23,13 @@ app.use(
 );
 
 app.use(express.json())
-app.use(cors({credentials: true, origin: 'https://employee-information-unique.netlify.app', 'methods': 'GET,PUT,PATCH,POST,DELETE', 'Access-Control-Allow-Headers':'Authorization'})) // Pitä olla security syyistä...frontendin tule error jos ei ole tämä
+app.use(cors({credentials: true, origin: 'https://employee-information-unique.netlify.app/', 'methods': 'GET,PUT,PATCH,POST,DELETE', 'Access-Control-Allow-Headers':'Authorization'})) // Pitä olla security syyistä...frontendin tule error jos ei ole tämä
 app.use(helmet())
 app.use(xss());
 
 //Routes
 app.use('/api/', authRouter)
-app.use('/api/', authenticateUser, employee)
+app.use('/api/', authenticateUser, employee, user )
 
 const port = process.env.PORT || 3001
 const start = async function (){
